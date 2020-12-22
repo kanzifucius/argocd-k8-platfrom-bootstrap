@@ -1,5 +1,5 @@
 kind: ProviderConfig
-apiVersion: helm.crossplane.io/v1alpha1
+apiVersion: helm.crossplane.io/v1
 metadata:
   name: helm-provider-config
   annotations:
