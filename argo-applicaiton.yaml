@@ -1,7 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstarp
+  name: bootstarp-crossplane
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/kanzifucius/argocd-k8-platfrom-bootstrap.git'
+    path: argo-bootstrap/crossplane
+    targetRevision: master
+    directory:
+      recurse: true
+      jsonnet: { }
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: crossplane
+  syncPolicy:
+    automated: { }
+    syncOptions:
+      - CreateNamespace=true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstarp-platfrom
   namespace: argocd
 spec:
   destination:
@@ -9,7 +32,7 @@ spec:
     namespace: crossplane
     server: 'https://kubernetes.default.svc'
   source:
-    path: argo-bootstrap
+    path: argo-bootstrap/bootstraps
     repoURL: 'https://github.com/kanzifucius/argocd-k8-platfrom-bootstrap.git'
     targetRevision: master
   project: default
@@ -17,5 +40,6 @@ spec:
     recurse: true
     jsonnet: { }
   syncPolicy:
+    automated: { }
     syncOptions:
       - CreateNamespace=true
