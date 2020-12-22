@@ -6,4 +6,4 @@ spec:
   prometheus: 
       version: "1"
   providerConfigRef:
-    name : helm-provider
+    name : helm-provider-config
