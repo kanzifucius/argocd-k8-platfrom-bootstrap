@@ -3,7 +3,7 @@ apiVersion: helm.crossplane.io/v1beta1
 metadata:
   name: helm-provider-config
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   credentials:
     source: InjectedIdentity
