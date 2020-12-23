@@ -10,5 +10,7 @@ resources:
 #  - repos-secrets.yaml
 
 # changes to config maps
+namespace: argocd
+
 patchesStrategicMerge:
   - overlays/argo-cd-cm.yaml
